@@ -1,0 +1,24 @@
+/* make the customizations */
+
+$red: #d76957;
+$yellow: #f3bd6b;
+$white: #f4f9f7;
+$blue: #38718a;
+$green: #769a52;
+$error: #f44336;
+$black: #020506;
+
+$theme-colors: (
+  "red": $red,
+  "yellow": $yellow,
+  "white": $white,
+  "blue": $blue,
+  "green": $green,
+  "error": $error,
+  "black": $black,
+);
+
+/* import bootstrap to set changes */
+
+@import "~bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";
