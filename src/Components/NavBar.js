@@ -1,3 +1,6 @@
+/*Needed to install react-router-bootstrap to change Link of React-Router to LinkContainer 
+(otherwse there was an a element nestend inside another a element) */
+
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
@@ -15,12 +18,12 @@ function NavBar(props) {
         </LinkContainer>
         {!props.isLogged && (
           <LinkContainer to="/login" className="text-white">
-            <Nav.Link onClick={props.onSetIsLogged}>Login</Nav.Link>
+            <Nav.Link>Login</Nav.Link>
           </LinkContainer>
         )}
         {props.isLogged && (
-          <LinkContainer to="/login" className="text-white">
-            <Nav.Link onClick={props.onSetIsLogged}>Logout</Nav.Link>
+          <LinkContainer to="/" className="text-white">
+            <Nav.Link onClick={props.onLogout}>Logout</Nav.Link>
           </LinkContainer>
         )}
       </Container>
