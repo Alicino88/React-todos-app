@@ -4,9 +4,11 @@ import Container from "react-bootstrap/Container";
 
 function NavBar(props) {
   return (
-    <Navbar bg="red" variant="red">
+    <Navbar bg="primary" variant="primary" className="text-white">
       <Container>
-        <Navbar.Brand href="#home">Todos</Navbar.Brand>
+        <Navbar.Brand href="#home" className="text-white">
+          Todos
+        </Navbar.Brand>
         {!props.isLogged && (
           <Nav.Link onClick={props.onSetIsLogged}>Login</Nav.Link>
         )}
