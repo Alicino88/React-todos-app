@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Login(props) {
   const submit = (e) => {
@@ -23,8 +24,11 @@ function Login(props) {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" />
           </Form.Group>
+
           <Button onClick={submit} variant="primary" type="submit">
-            Login
+            <Link to="/mytodos" className="text-white text-decoration-none">
+              Login
+            </Link>
           </Button>
         </Form>
       </Col>
