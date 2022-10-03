@@ -6,8 +6,6 @@ function ToDos(props) {
   const dueDateRef = useRef();
   const categoryRef = useRef();
 
-  console.log(titleRef);
-
   const goalSubmitHandler = (e) => {
     e.preventDefault();
     const enteredTitle = titleRef.current.value;
