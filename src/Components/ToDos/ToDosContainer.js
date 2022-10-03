@@ -4,7 +4,7 @@ import ToDoItem from "./ToDoItem";
 function ToDosContainer(props) {
   //console.log(props);
   return (
-    <Container className="mt-5">
+    <Container className="mt-3">
       <Col md={5} className="mx-auto bg-light">
         <ListGroup as="ol" numbered>
           {props.myToDos.map((item) => (
