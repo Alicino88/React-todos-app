@@ -9,21 +9,21 @@ function ToDos() {
   const [toDos, setToDos] = useState([]);
   const [clickedCategory, setclickedCategory] = useState("Hobby");
 
-  //console.log(toDos);
   const addToDo = (newToDo) => {
-    //console.log(newTitle);
     setToDos((previousToDos) => {
       return [...previousToDos, newToDo];
     });
   };
 
-  const filterToDo = (selectedCategory) => {
-    setclickedCategory(clickedCategory);
-    const filteredToDos = toDos.filter((toDo) => {
-      return toDo.category === selectedCategory;
-    });
-    console.log(filteredToDos);
+  /*selectedCategory arives from ToDosFilter component */
+  const categoryHandler = (selectedCategory) => {
+    setclickedCategory(selectedCategory);
   };
+
+  /*below I create new array containing todos of the selected hobby */
+  const filteredToDos = toDos.filter((toDo) => {
+    return toDo.category === clickedCategory;
+  });
   return (
     <>
       <ToDoForm onAddToDos={addToDo} currentCategory={clickedCategory} />
@@ -34,8 +34,8 @@ function ToDos() {
           </Col>
         </Container>
       )}
-      {toDos.length > 0 && <ToDosFilter onChangeCategory={filterToDo} />}
-      <ToDosContainer myToDos={toDos} />
+      {toDos.length > 0 && <ToDosFilter onChangeCategory={categoryHandler} />}
+      <ToDosContainer myToDos={filteredToDos} />
     </>
   );
 }
