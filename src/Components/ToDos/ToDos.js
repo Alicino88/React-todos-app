@@ -7,6 +7,8 @@ import { Container, Col } from "react-bootstrap";
 
 function ToDos() {
   const [toDos, setToDos] = useState([]);
+  const [clickedCategory, setclickedCategory] = useState("Hobby");
+
   //console.log(toDos);
   const addToDo = (newToDo) => {
     //console.log(newTitle);
@@ -14,9 +16,17 @@ function ToDos() {
       return [...previousToDos, newToDo];
     });
   };
+
+  const filterToDo = (selectedCategory) => {
+    setclickedCategory(clickedCategory);
+    const filteredToDos = toDos.filter((toDo) => {
+      return toDo.category === selectedCategory;
+    });
+    console.log(filteredToDos);
+  };
   return (
     <>
-      <ToDoForm onAddToDos={addToDo} />
+      <ToDoForm onAddToDos={addToDo} currentCategory={clickedCategory} />
       {toDos.length === 0 && (
         <Container>
           <Col md={5} className="mx-auto mt-4">
@@ -24,7 +34,7 @@ function ToDos() {
           </Col>
         </Container>
       )}
-      {toDos.length > 0 && <ToDosFilter />}
+      {toDos.length > 0 && <ToDosFilter onChangeCategory={filterToDo} />}
       <ToDosContainer myToDos={toDos} />
     </>
   );
