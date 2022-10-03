@@ -1,11 +1,32 @@
 import Dropdown from "react-bootstrap/Dropdown";
+import Form from "react-bootstrap/Form";
 import { Container, Col } from "react-bootstrap";
 
-function ToDosFilter() {
+function ToDosFilter(props) {
+  const filterCategory = (e) => {
+    let category = e.target.value;
+    console.log(category);
+    props.onChangeCategory(category);
+  };
   return (
     <Container>
       <Col md={5} className="mx-auto mt-5">
-        <Dropdown>
+        <Form>
+          <Form.Group onChange={filterCategory}>
+            <Form.Select value={props.currentCategory}>
+              <option>Hobby</option>
+              <option>Family</option>
+              <option>Work</option>
+              <option>Study</option>
+            </Form.Select>
+          </Form.Group>
+        </Form>
+      </Col>
+    </Container>
+  );
+}
+
+/*  <Dropdown onClick={filterCategory}>
           <Dropdown.Toggle variant="warning" id="dropdown-basic">
             Select Category
           </Dropdown.Toggle>
@@ -16,10 +37,6 @@ function ToDosFilter() {
             <Dropdown.Item href="#/action-3">Work</Dropdown.Item>
             <Dropdown.Item href="#/action-3">Study</Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown>
-      </Col>
-    </Container>
-  );
-}
+        </Dropdown>*/
 
 export default ToDosFilter;
