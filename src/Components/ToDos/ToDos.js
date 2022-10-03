@@ -5,13 +5,10 @@ import { useState } from "react";
 function ToDos() {
   const [toDos, setToDos] = useState([]);
   //console.log(toDos);
-  const addToDo = (newTitle, newDate, newCathegory) => {
+  const addToDo = (newToDo) => {
     //console.log(newTitle);
     setToDos((previousToDos) => {
-      return [
-        ...previousToDos,
-        { title: newTitle, date: newDate, category: newCathegory },
-      ];
+      return [...previousToDos, newToDo];
     });
   };
   return (

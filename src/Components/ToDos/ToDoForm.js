@@ -14,7 +14,16 @@ function ToDos(props) {
     //console.log(enteredTitle);
     // console.log(dueDate);
     //console.log(enteredCathegory);
-    props.onAddToDos(enteredTitle, dueDate, enteredCathegory);
+
+    const newToDo = {
+      title: enteredTitle,
+      date: new Date(dueDate),
+      category: enteredCathegory,
+    };
+    console.log(newToDo);
+    props.onAddToDos(newToDo);
+
+    //form is cleared after submission:
     titleRef.current.value = "";
     dueDateRef.current.value = "";
     categoryRef.current.value = "";
