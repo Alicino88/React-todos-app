@@ -56,7 +56,11 @@ function ToDos() {
       )}
       {toDos.length > 0 && <ToDosFilter onChangeCategory={categoryHandler} />}
       {!noItems > 0 && (
-        <ToDosContainer myToDos={toDos} removeToDo3={deleteToDo} />
+        <ToDosContainer
+          myToDos={toDos}
+          removeToDo3={deleteToDo}
+          category={clickedCategory}
+        />
       )}
       {noItems && <p>There are no todos for this category yet</p>}
     </>
