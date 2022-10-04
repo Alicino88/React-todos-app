@@ -15,7 +15,7 @@ function ToDosContainer(props) {
             <ToDoItem
               title={item.title}
               date={item.date}
-              cathegory={item.cathegory}
+              category={item.category}
               key={item.title}
               removeToDo1={removeToDo2}
             />
