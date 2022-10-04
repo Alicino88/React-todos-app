@@ -5,7 +5,7 @@ import { Container, Col } from "react-bootstrap";
 function ToDosFilter(props) {
   const filterCategory = (e) => {
     let category = e.target.value;
-    console.log(category);
+    //console.log(category);
     props.onChangeCategory(category);
   };
   return (
@@ -14,6 +14,7 @@ function ToDosFilter(props) {
         <Form>
           <Form.Group onChange={filterCategory}>
             <Form.Select value={props.currentCategory}>
+              <option>All</option>
               <option>Hobby</option>
               <option>Family</option>
               <option>Work</option>
