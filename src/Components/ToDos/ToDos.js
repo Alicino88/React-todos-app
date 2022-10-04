@@ -32,6 +32,10 @@ function ToDos() {
       return toDo.category === clickedCategory;
     }
   });
+
+  const idHandler = (id) => {
+    console.log(id);
+  };
   return (
     <>
       <ToDoForm onAddToDos={addToDo} currentCategory={clickedCategory} />
@@ -43,7 +47,7 @@ function ToDos() {
         </Container>
       )}
       {toDos.length > 0 && <ToDosFilter onChangeCategory={categoryHandler} />}
-      <ToDosContainer myToDos={filteredToDos} />
+      <ToDosContainer myToDos={filteredToDos} removeToDo3={idHandler} />
     </>
   );
 }

@@ -1,10 +1,14 @@
 import { ListGroupItem, Badge } from "react-bootstrap";
 
 function toDoItem(props) {
-  console.log(props.date);
+  //console.log(props.date);
   const month = props.date.toLocaleString("en-US", { month: "long" });
   const day = props.date.toLocaleString("en-US", { day: "2-digit" });
   const year = props.date.getFullYear();
+
+  const removeToDo = () => {
+    props.removeToDo1(props.title);
+  };
 
   //const year = props.date.getFullYear();
   return (
@@ -12,6 +16,7 @@ function toDoItem(props) {
       as="li"
       key={props.title}
       className="d-flex justify-content-between"
+      onClick={removeToDo}
     >
       <div className="ms-2 me-auto"> {props.title}</div>
       <Badge pill bg="warning" text="dark">

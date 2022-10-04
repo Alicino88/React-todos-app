@@ -3,6 +3,10 @@ import ToDoItem from "./ToDoItem";
 
 function ToDosContainer(props) {
   //console.log(props);
+
+  const removeToDo2 = (id) => {
+    props.removeToDo3(id);
+  };
   return (
     <Container className="mt-3">
       <Col md={5} className="mx-auto bg-light">
@@ -13,6 +17,7 @@ function ToDosContainer(props) {
               date={item.date}
               cathegory={item.cathegory}
               key={item.title}
+              removeToDo1={removeToDo2}
             />
           ))}
         </ListGroup>
