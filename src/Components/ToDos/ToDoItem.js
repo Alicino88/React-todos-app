@@ -18,9 +18,12 @@ function toDoItem(props) {
       className="d-flex justify-content-between"
       onClick={removeToDo}
     >
-      <div className="ms-2 me-auto"> {props.title}</div>
+      <div className="ms-2 me-auto">
+        {" "}
+        {props.title} {props.category}
+      </div>
       <Badge pill bg="warning" text="dark">
-        <span>{day}</span> <span>{month}</span> <span>{year}</span>
+        <span>{day}</span> <span>{month}</span> <span>{year}</span>{" "}
       </Badge>
     </ListGroupItem>
   );
