@@ -7,7 +7,7 @@ import { Container, Col } from "react-bootstrap";
 
 function ToDos() {
   const [toDos, setToDos] = useState([]);
-  const [clickedCategory, setclickedCategory] = useState("Hobby");
+  const [clickedCategory, setclickedCategory] = useState("All");
 
   const addToDo = (newToDo) => {
     setToDos((previousToDos) => {
@@ -20,9 +20,17 @@ function ToDos() {
     setclickedCategory(selectedCategory);
   };
 
-  /*below I create new array containing todos of the selected hobby */
+  /*below I create new array containing todos of the selected hobby 
   const filteredToDos = toDos.filter((toDo) => {
     return toDo.category === clickedCategory;
+  });*/
+
+  const filteredToDos = toDos.filter((toDo) => {
+    if (clickedCategory === "All") {
+      return toDos;
+    } else {
+      return toDo.category === clickedCategory;
+    }
   });
   return (
     <>
