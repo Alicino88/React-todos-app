@@ -8,6 +8,8 @@ import { Container, Col } from "react-bootstrap";
 function ToDos() {
   const [toDos, setToDos] = useState([]);
   const [clickedCategory, setclickedCategory] = useState("All");
+  const [noItems, setNoItems] = useState(false);
+  console.log(noItems);
 
   //console.log(toDos);
 
@@ -21,13 +23,19 @@ function ToDos() {
 
   const categoryHandler = (selectedCategory) => {
     setclickedCategory(selectedCategory);
+    setNoItems(false);
     if (selectedCategory === "All") {
       return toDos;
     } else {
       const filteredToDos = toDos.filter(
         (toDo) => toDo.category === selectedCategory
       );
-      setToDos(filteredToDos);
+
+      if (filteredToDos.length > 0) {
+        setToDos(filteredToDos);
+      } else if (filteredToDos.length === 0) {
+        setNoItems(true);
+      }
     }
   };
 
@@ -47,7 +55,10 @@ function ToDos() {
         </Container>
       )}
       {toDos.length > 0 && <ToDosFilter onChangeCategory={categoryHandler} />}
-      <ToDosContainer myToDos={toDos} removeToDo3={deleteToDo} />
+      {!noItems > 0 && (
+        <ToDosContainer myToDos={toDos} removeToDo3={deleteToDo} />
+      )}
+      {noItems && <p>There are no todos for this category yet</p>}
     </>
   );
 }
