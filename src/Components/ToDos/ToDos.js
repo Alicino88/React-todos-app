@@ -9,33 +9,33 @@ function ToDos() {
   const [toDos, setToDos] = useState([]);
   const [clickedCategory, setclickedCategory] = useState("All");
 
+  //console.log(toDos);
+
+  //console.log(clickedCategory);
+
   const addToDo = (newToDo) => {
     setToDos((previousToDos) => {
       return [...previousToDos, newToDo];
     });
   };
 
-  /*selectedCategory arives from ToDosFilter component */
   const categoryHandler = (selectedCategory) => {
     setclickedCategory(selectedCategory);
-  };
-
-  /*below I create new array containing todos of the selected hobby 
-  const filteredToDos = toDos.filter((toDo) => {
-    return toDo.category === clickedCategory;
-  });*/
-
-  const filteredToDos = toDos.filter((toDo) => {
-    if (clickedCategory === "All") {
+    if (selectedCategory === "All") {
       return toDos;
     } else {
-      return toDo.category === clickedCategory;
+      const filteredToDos = toDos.filter(
+        (toDo) => toDo.category === selectedCategory
+      );
+      setToDos(filteredToDos);
     }
-  });
-
-  const idHandler = (id) => {
-    console.log(id);
   };
+
+  const deleteToDo = (id) => {
+    const filteredToDos = toDos.filter((toDo) => toDo.title !== id);
+    setToDos(filteredToDos);
+  };
+
   return (
     <>
       <ToDoForm onAddToDos={addToDo} currentCategory={clickedCategory} />
@@ -47,7 +47,7 @@ function ToDos() {
         </Container>
       )}
       {toDos.length > 0 && <ToDosFilter onChangeCategory={categoryHandler} />}
-      <ToDosContainer myToDos={filteredToDos} removeToDo3={idHandler} />
+      <ToDosContainer myToDos={toDos} removeToDo3={deleteToDo} />
     </>
   );
 }
