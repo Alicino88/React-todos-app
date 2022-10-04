@@ -20,7 +20,7 @@ function ToDos(props) {
       date: new Date(dueDate),
       category: enteredCathegory,
     };
-    console.log(newToDo);
+    //console.log(newToDo);
     props.onAddToDos(newToDo);
 
     //form is cleared after submission:
