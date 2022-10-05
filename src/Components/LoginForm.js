@@ -5,33 +5,32 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Login(props) {
-  const [emailIsValid, setEmailIsValid] = useState();
+  const [usernameIsValid, setUsernameIsValid] = useState();
   const [passwordIsValid, setPasswordIsValid] = useState();
-  const [emailValue, setEmailValue] = useState("");
+  const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
 
   //the two below states are for the dynamic styling in case the inputs are not valid
-  const [emailisRed, setEmailisRed] = useState(false);
+  const [usernameisRed, setUsernameisRed] = useState(false);
   const [PasswordisRed, setPasswordisRed] = useState(false);
 
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const emailChangeHandler = (e) => {
-    setEmailisRed(false);
-    const email = e.target.value;
-    console.log(email);
-    if (email.includes("@")) {
-      setEmailIsValid(true);
+  const usernameChangeHandler = (e) => {
+    setUsernameisRed(false);
+    const username = e.target.value;
+    if (username.length > 0) {
+      setUsernameIsValid(true);
     } else {
-      setEmailIsValid(false);
+      setUsernameIsValid(false);
     }
-    setEmailValue(email);
+    setUsernameValue(username);
   };
 
   const passwordChangeHandler = (e) => {
     setPasswordisRed(false);
     const password = e.target.value;
-    if (password.trim().length >= 5) {
+    if (password.trim().length > 5) {
       setPasswordIsValid(true);
     } else {
       setPasswordIsValid(false);
@@ -40,12 +39,12 @@ function Login(props) {
   };
 
   useEffect(() => {
-    if (emailIsValid && passwordIsValid) {
+    if (usernameIsValid && passwordIsValid) {
       setFormIsValid(true);
-    } else if (!emailIsValid || !passwordIsValid) {
+    } else if (!usernameIsValid || !passwordIsValid) {
       setFormIsValid(false);
     }
-  }, [emailValue, passwordValue, emailIsValid, passwordIsValid]);
+  }, [usernameValue, passwordValue, usernameIsValid, passwordIsValid]);
   const submit = (e) => {
     e.preventDefault();
 
@@ -53,10 +52,10 @@ function Login(props) {
   };
 
   const emailStyleHandler = () => {
-    if (!emailIsValid) {
-      setEmailisRed(true);
-    } else if (emailIsValid) {
-      setEmailisRed(false);
+    if (!usernameIsValid) {
+      setUsernameisRed(true);
+    } else if (usernameIsValid) {
+      setUsernameisRed(false);
     }
   };
 
@@ -72,17 +71,14 @@ function Login(props) {
       <Col md={5} className="mx-auto">
         <Form className="mt-5">
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
               type="email"
               placeholder="Enter email"
-              onChange={emailChangeHandler}
-              className={emailisRed ? "border border-danger" : ""}
+              onChange={usernameChangeHandler}
+              className={usernameisRed ? "border border-danger" : ""}
               onBlur={emailStyleHandler}
             />
-            <Form.Text className="text-muted">
-              Your email should contain "@" character.
-            </Form.Text>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -94,6 +90,11 @@ function Login(props) {
               onBlur={passwordStyleHandler}
               className={PasswordisRed ? "border border-danger" : ""}
             />
+            {PasswordisRed && (
+              <Form.Text className="text-muted">
+                Almost...Your password must be longer that 5 characters.
+              </Form.Text>
+            )}
           </Form.Group>
 
           <Button
