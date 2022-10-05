@@ -13,7 +13,7 @@ function ToDosFilter(props) {
       <Col md={5} className="mx-auto mt-5">
         <Form>
           <Form.Group onChange={filterCategory}>
-            <Form.Select value={props.selectedCategory}>
+            <Form.Select defaultValue={props.selectedCategory}>
               <option>All</option>
               <option>Hobby</option>
               <option>Family</option>
