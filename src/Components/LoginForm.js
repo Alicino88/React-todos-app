@@ -5,14 +5,19 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Login(props) {
-  const [emailIsValid, setEmailIsValid] = useState(true);
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const [emailIsValid, setEmailIsValid] = useState();
+  const [passwordIsValid, setPasswordIsValid] = useState();
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+
+  //the two below states are for the dynamic styling in case the inputs are not valid
+  const [emailisRed, setEmailisRed] = useState(false);
+  const [PasswordisRed, setPasswordisRed] = useState(false);
 
   const [formIsValid, setFormIsValid] = useState(false);
 
   const emailChangeHandler = (e) => {
+    setEmailisRed(false);
     const email = e.target.value;
     console.log(email);
     if (email.includes("@")) {
@@ -24,6 +29,7 @@ function Login(props) {
   };
 
   const passwordChangeHandler = (e) => {
+    setPasswordisRed(false);
     const password = e.target.value;
     if (password.trim().length >= 5) {
       setPasswordIsValid(true);
@@ -45,6 +51,22 @@ function Login(props) {
 
     props.onLogin();
   };
+
+  const emailStyleHandler = () => {
+    if (!emailIsValid) {
+      setEmailisRed(true);
+    } else if (emailIsValid) {
+      setEmailisRed(false);
+    }
+  };
+
+  const passwordStyleHandler = () => {
+    if (!passwordIsValid) {
+      setPasswordisRed(true);
+    } else if (passwordIsValid) {
+      setPasswordisRed(false);
+    }
+  };
   return (
     <Container>
       <Col md={5} className="mx-auto">
@@ -55,10 +77,11 @@ function Login(props) {
               type="email"
               placeholder="Enter email"
               onChange={emailChangeHandler}
-              className={!emailIsValid ? "border border-danger" : ""}
+              className={emailisRed ? "border border-danger" : ""}
+              onBlur={emailStyleHandler}
             />
             <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
+              Your email should contain "@" character.
             </Form.Text>
           </Form.Group>
 
@@ -68,7 +91,8 @@ function Login(props) {
               type="password"
               placeholder="Password"
               onChange={passwordChangeHandler}
-              className={!passwordIsValid ? "border border-danger" : ""}
+              onBlur={passwordStyleHandler}
+              className={PasswordisRed ? "border border-danger" : ""}
             />
           </Form.Group>
 
