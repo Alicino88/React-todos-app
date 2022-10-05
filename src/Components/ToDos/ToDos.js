@@ -38,7 +38,7 @@ function ToDos() {
 
   const filteredToDos = toDos.filter((toDo) => {
     if (clickedCategory === "All") {
-      return toDos;
+      return true;
     } else {
       return toDo.category === clickedCategory;
     }
