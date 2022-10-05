@@ -43,7 +43,7 @@ function ToDos() {
       return toDo.category === clickedCategory;
     }
   });
-  console.log(filteredToDos);
+  //console.log(filteredToDos);
 
   const deleteToDo = (id) => {
     const filteredToDos = toDos.filter((toDo) => toDo.title !== id);
@@ -56,9 +56,7 @@ function ToDos() {
       {toDos.length === 0 && (
         <Container>
           <Col md={5} className="mx-auto mt-4">
-            <Alert>
-              Your todo list is empty. Add a todo by typing in the form above.
-            </Alert>
+            <Alert>Woop woop, there are no todos on your list.</Alert>
           </Col>
         </Container>
       )}
