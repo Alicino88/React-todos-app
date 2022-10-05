@@ -56,7 +56,9 @@ function ToDos() {
       {toDos.length === 0 && (
         <Container>
           <Col md={5} className="mx-auto mt-4">
-            <Alert>There are not todos on your list yet</Alert>
+            <Alert>
+              Your todo list is empty. Add a todo by typing in the form above.
+            </Alert>
           </Col>
         </Container>
       )}
@@ -65,6 +67,13 @@ function ToDos() {
           onChangeCategory={categoryHandler}
           selectedCategory={clickedCategory}
         />
+      )}
+      {toDos.length > 0 && filteredToDos.length === 0 && (
+        <Container>
+          <Col md={5} className="mx-auto mt-4">
+            <Alert>There are no todos for this category yet</Alert>
+          </Col>
+        </Container>
       )}
       {/*{clickedCategory === "All" && (
         <ToDosContainer
