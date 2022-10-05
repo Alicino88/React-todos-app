@@ -5,6 +5,17 @@ import { useState } from "react";
 import Alert from "react-bootstrap/Alert";
 import { Container, Col } from "react-bootstrap";
 
+/*
+1. user fills the form, submits and addToDo is fired. ToDos State changes and component ir re-rendered.
+2. Initially the clickedCategory is "All" and all the toDos are displayed.
+3. when user changes category, clickedCategory state changes and the component is re-rendered. Now the todos
+that are shown in the ui are filteredToDos.
+4. when user clicks on a ToDoItem, this is removed from the list: a new array without the calceled item is created and set as main toDos state.
+5. because of state change, the component is re-rendered. In case the current clickedCategory state is !== "All" then the toDos are filtered otherwise all the toDos are shown.
+
+
+*/
+
 function ToDos() {
   const [toDos, setToDos] = useState([]);
   const [clickedCategory, setclickedCategory] = useState("All");
@@ -24,8 +35,8 @@ function ToDos() {
   );
 
   const deleteToDo = (id) => {
-    const filteredToDo = toDos.filter((toDo) => toDo.title !== id);
-    setToDos(filteredToDo);
+    const filteredToDos = toDos.filter((toDo) => toDo.title !== id);
+    setToDos(filteredToDos);
   };
 
   return (
