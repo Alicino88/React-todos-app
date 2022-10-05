@@ -1,4 +1,5 @@
 import { Container, Col, ListGroup } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 import ToDoItem from "./ToDoItem";
 
 function ToDosContainer(props) {
@@ -8,21 +9,31 @@ function ToDosContainer(props) {
     props.removeToDo3(id);
   };
   return (
-    <Container className="mt-3">
-      <Col md={5} className="mx-auto bg-light">
-        <ListGroup as="ol" numbered>
-          {props.myToDos.map((item) => (
-            <ToDoItem
-              title={item.title}
-              date={item.date}
-              category={item.category}
-              key={item.title}
-              removeToDo1={removeToDo2}
-            />
-          ))}
-        </ListGroup>
-      </Col>
-    </Container>
+    <>
+      {props.myToDos.length === 0 && (
+        <Container>
+          <Col md={5} className="mx-auto mt-4">
+            <Alert>There are not todos</Alert>
+          </Col>
+        </Container>
+      )}
+
+      <Container className="mt-3">
+        <Col md={5} className="mx-auto bg-light">
+          <ListGroup as="ol" numbered>
+            {props.myToDos.map((item) => (
+              <ToDoItem
+                title={item.title}
+                date={item.date}
+                category={item.category}
+                key={item.title}
+                removeToDo1={removeToDo2}
+              />
+            ))}
+          </ListGroup>
+        </Col>
+      </Container>
+    </>
   );
 }
 

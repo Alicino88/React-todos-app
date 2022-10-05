@@ -7,13 +7,7 @@ import { Container, Col } from "react-bootstrap";
 
 function ToDos() {
   const [toDos, setToDos] = useState([]);
-  const [clickedCategory, setclickedCategory] = useState("All");
-  const [noItems, setNoItems] = useState(false);
-  console.log(noItems);
-
-  //console.log(toDos);
-
-  //console.log(clickedCategory);
+  const [clickedCategory, setclickedCategory] = useState("Hobby");
 
   const addToDo = (newToDo) => {
     setToDos((previousToDos) => {
@@ -23,30 +17,20 @@ function ToDos() {
 
   const categoryHandler = (selectedCategory) => {
     setclickedCategory(selectedCategory);
-    setNoItems(false);
-    if (selectedCategory === "All") {
-      return toDos;
-    } else {
-      const filteredToDos = toDos.filter(
-        (toDo) => toDo.category === selectedCategory
-      );
-
-      if (filteredToDos.length > 0) {
-        setToDos(filteredToDos);
-      } else if (filteredToDos.length === 0) {
-        setNoItems(true);
-      }
-    }
   };
 
+  const filteredToDos = toDos.filter(
+    (toDo) => toDo.category === clickedCategory
+  );
+
   const deleteToDo = (id) => {
-    const filteredToDos = toDos.filter((toDo) => toDo.title !== id);
-    setToDos(filteredToDos);
+    const filteredToDo = toDos.filter((toDo) => toDo.title !== id);
+    setToDos(filteredToDo);
   };
 
   return (
     <>
-      <ToDoForm onAddToDos={addToDo} currentCategory={clickedCategory} />
+      <ToDoForm onAddToDos={addToDo} />
       {toDos.length === 0 && (
         <Container>
           <Col md={5} className="mx-auto mt-4">
@@ -54,15 +38,26 @@ function ToDos() {
           </Col>
         </Container>
       )}
-      {toDos.length > 0 && <ToDosFilter onChangeCategory={categoryHandler} />}
-      {!noItems > 0 && (
+      {toDos.length > 0 && (
+        <ToDosFilter
+          onChangeCategory={categoryHandler}
+          selectedCategory={clickedCategory}
+        />
+      )}
+      {clickedCategory === "All" && (
         <ToDosContainer
           myToDos={toDos}
           removeToDo3={deleteToDo}
           category={clickedCategory}
         />
       )}
-      {noItems && <p>There are no todos for this category yet</p>}
+      {clickedCategory !== "All" && (
+        <ToDosContainer
+          myToDos={filteredToDos}
+          category={clickedCategory}
+          removeToDo3={deleteToDo}
+        />
+      )}
     </>
   );
 }
