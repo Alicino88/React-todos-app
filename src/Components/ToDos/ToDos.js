@@ -7,7 +7,7 @@ import { Container, Col } from "react-bootstrap";
 
 function ToDos() {
   const [toDos, setToDos] = useState([]);
-  const [clickedCategory, setclickedCategory] = useState("Hobby");
+  const [clickedCategory, setclickedCategory] = useState("All");
 
   const addToDo = (newToDo) => {
     setToDos((previousToDos) => {
