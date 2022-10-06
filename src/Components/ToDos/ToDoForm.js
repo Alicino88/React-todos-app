@@ -63,7 +63,7 @@ function ToDos(props) {
     //form is cleared after submission:
     setEnteredTitle("");
     setEnteredDate("");
-    setEnteredCategory("");
+    setEnteredCategory("Hobby");
   };
   return (
     <Container>
@@ -106,6 +106,7 @@ function ToDos(props) {
               placeholder="select category"
               onChange={categoryChangeHandler}
               className={!categoryIsValid ? "border border-danger" : ""}
+              value={enteredCategory}
             >
               <option>Hobby</option>
               <option>Family</option>
