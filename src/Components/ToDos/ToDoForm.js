@@ -67,9 +67,9 @@ function ToDos(props) {
   };
   return (
     <Container>
-      <Col md={5} className="mx-auto">
-        <Form className="bg-light mt-5 p-5">
-          <h2>Add a task</h2>
+      <Col md={6} lg={5} className="mx-auto">
+        <Form className="bg-light mt-5 p-5 rounded">
+          <h3 className="mb-4">Add your tasks</h3>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Title</Form.Label>
             <Form.Control
@@ -77,6 +77,7 @@ function ToDos(props) {
               placeholder="Enter title"
               onChange={titleChangeHandler}
               className={!titleIsValid ? "border border-danger" : ""}
+              value={enteredTitle}
             />
             {!titleIsValid && (
               <Form.Text className="text-muted">
@@ -91,6 +92,7 @@ function ToDos(props) {
               placeholder="Enter title"
               onChange={dateChangeHandler}
               className={!dateIsValid ? "border border-danger" : ""}
+              value={enteredDate}
             />
             {!dateIsValid && (
               <Form.Text className="text-muted">
@@ -111,7 +113,9 @@ function ToDos(props) {
               <option>Study</option>
             </Form.Select>
           </Form.Group>
-          <Button onClick={goalSubmitHandler}>Add</Button>
+          <Button className="mt-3 px-4" onClick={goalSubmitHandler}>
+            Add
+          </Button>
         </Form>
       </Col>
     </Container>
