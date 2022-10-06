@@ -4,8 +4,9 @@ import { Col } from "react-bootstrap";
 function Welcome() {
   return (
     <Container>
-      <Col md={9} className="mt-5">
-        <h1>Hi there! Click on the login button ans start adding your todos</h1>
+      <Col md={9} className="mt-5 pt-5">
+        <h1 className="fw-bold">Hi there!</h1>
+        <h1> Click on the login button and start adding your todos</h1>
       </Col>
     </Container>
   );
