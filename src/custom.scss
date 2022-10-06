@@ -7,6 +7,7 @@ $blue: #38718a;
 $green: #769a52;
 $error: #f44336;
 $black: #020506;
+$purple: #8f99bb;
 
 $theme-colors: (
   "red": $red,
@@ -16,9 +17,10 @@ $theme-colors: (
   "green": $green,
   "error": $error,
   "black": $black,
+  "purple": $purple,
 );
 
 /* import bootstrap to set changes */
 
+/*~ means webpack will search for it in node_modules*/
 @import "~bootstrap/scss/bootstrap";
-@import "../node_modules/bootstrap/scss/bootstrap";
