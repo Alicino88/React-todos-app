@@ -69,7 +69,9 @@ function ToDos() {
       {toDos.length > 0 && filteredToDos.length === 0 && (
         <Container>
           <Col md={5} className="mx-auto mt-4">
-            <Alert>There are no todos for this category yet</Alert>
+            <Alert variant="warning">
+              There are no todos for this category yet
+            </Alert>
           </Col>
         </Container>
       )}
