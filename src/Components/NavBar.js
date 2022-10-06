@@ -9,8 +9,8 @@ import { LinkContainer } from "react-router-bootstrap";
 
 function NavBar(props) {
   return (
-    <Navbar bg="primary" variant="white">
-      <Container>
+    <Navbar bg="dark" variant="white">
+      <Container className="p-3">
         <LinkContainer to="/">
           <Navbar.Brand className="text-white" to="/">
             Todos
