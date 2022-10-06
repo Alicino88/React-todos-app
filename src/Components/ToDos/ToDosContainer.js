@@ -11,7 +11,7 @@ function ToDosContainer(props) {
   return (
     <>
       <Container className="mt-3">
-        <Col md={5} className="mx-auto bg-light">
+        <Col md={7} lg={5} className="mx-auto bg-light">
           <ListGroup as="ol" numbered>
             {props.myToDos.map((item) => (
               <ToDoItem
