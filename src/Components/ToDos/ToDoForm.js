@@ -67,7 +67,7 @@ function ToDos(props) {
   };
   return (
     <Container>
-      <Col md={6} lg={5} className="mx-auto">
+      <Col md={7} lg={5} className="mx-auto">
         <Form className="bg-light mt-5 p-5 rounded">
           <h3 className="mb-4">Add your tasks</h3>
           <Form.Group className="mb-3" controlId="formBasicEmail">
