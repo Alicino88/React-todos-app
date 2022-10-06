@@ -68,13 +68,13 @@ function Login(props) {
   };
   return (
     <Container>
-      <Col md={5} className="mx-auto">
-        <Form className="mt-5">
+      <Col md={6} lg={4} className="mx-auto pt-5">
+        <Form className="mt-5 px-3">
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="email"
-              placeholder="Enter email"
+              placeholder="Enter username"
               onChange={usernameChangeHandler}
               className={usernameisRed ? "border border-danger" : ""}
               onBlur={emailStyleHandler}
@@ -92,12 +92,13 @@ function Login(props) {
             />
             {PasswordisRed && (
               <Form.Text className="text-muted">
-                Almost...Your password must be longer that 5 characters.
+                Almost...Your password must be longer than 5 characters.
               </Form.Text>
             )}
           </Form.Group>
 
           <Button
+            className="mt-3"
             onClick={submit}
             variant="primary"
             type="submit"
