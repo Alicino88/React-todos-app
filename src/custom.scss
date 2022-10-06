@@ -1,5 +1,18 @@
 /* make the customizations */
 
+@import "~bootstrap/scss/bootstrap-utilities";
+
+//Generate utilites for Cursor
+$utilities: map-merge(
+  $utilities,
+  (
+    "cursor": (
+      property: cursor,
+      values: auto default pointer wait text move help not-allowed,
+    ),
+  )
+);
+
 $red: #d76957;
 $yellow: #f3bd6b;
 $white: #f4f9f7;
