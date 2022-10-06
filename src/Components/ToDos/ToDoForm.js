@@ -1,32 +1,69 @@
 import { Container, Form, Col, Button } from "react-bootstrap";
-import { useRef } from "react";
+import { useState } from "react";
 
 function ToDos(props) {
-  const titleRef = useRef();
-  const dueDateRef = useRef();
-  const categoryRef = useRef();
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
+  const [enteredCategory, setEnteredCategory] = useState("Hobby");
+
+  const [titleIsValid, setTitleIsValid] = useState(true);
+  const [dateIsValid, setDateIsValid] = useState(true);
+  const [categoryIsValid, setCategoryIsValid] = useState(true);
+
+  const titleChangeHandler = (e) => {
+    if (e.target.value.trim().length > 0) {
+      setTitleIsValid(true);
+    }
+    setEnteredTitle(e.target.value);
+  };
+
+  const dateChangeHandler = (e) => {
+    if (e.target.value.trim().length > 0) {
+      setDateIsValid(true);
+    }
+    setEnteredDate(e.target.value);
+  };
+
+  const categoryChangeHandler = (e) => {
+    if (e.target.value.trim().length > 0) {
+      setCategoryIsValid(true);
+    }
+    setEnteredCategory(e.target.value);
+    console.log(e.target.value);
+  };
 
   const goalSubmitHandler = (e) => {
     e.preventDefault();
-    const enteredTitle = titleRef.current.value;
+    if (enteredTitle.trim().length === 0) {
+      setTitleIsValid(false);
+      return;
+    } else if (enteredDate.trim().length === 0) {
+      setDateIsValid(false);
+      return;
+    } else if (enteredCategory.trim().length === 0) {
+      setCategoryIsValid(false);
+      return;
+    }
+
+    /*const enteredTitle = titleRef.current.value;
     const dueDate = dueDateRef.current.value;
     const enteredCathegory = categoryRef.current.value;
     //console.log(enteredTitle);
     // console.log(dueDate);
-    //console.log(enteredCathegory);
+    //console.log(enteredCathegory);*/
 
     const newToDo = {
       title: enteredTitle,
-      date: new Date(dueDate),
-      category: enteredCathegory,
+      date: new Date(enteredDate),
+      category: enteredCategory,
     };
     //console.log(newToDo);
     props.onAddToDos(newToDo);
 
     //form is cleared after submission:
-    titleRef.current.value = "";
-    dueDateRef.current.value = "";
-    categoryRef.current.value = "";
+    setEnteredTitle("");
+    setEnteredDate("");
+    setEnteredCategory("");
   };
   return (
     <Container>
@@ -38,20 +75,36 @@ function ToDos(props) {
             <Form.Control
               type="text"
               placeholder="Enter title"
-              ref={titleRef}
+              onChange={titleChangeHandler}
+              className={!titleIsValid ? "border border-danger" : ""}
             />
+            {!titleIsValid && (
+              <Form.Text className="text-muted">
+                You forgot to give a title to your task.
+              </Form.Text>
+            )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Due date</Form.Label>
             <Form.Control
               type="date"
               placeholder="Enter title"
-              ref={dueDateRef}
+              onChange={dateChangeHandler}
+              className={!dateIsValid ? "border border-danger" : ""}
             />
+            {!dateIsValid && (
+              <Form.Text className="text-muted">
+                What is the deadline for this task?
+              </Form.Text>
+            )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Category</Form.Label>
-            <Form.Select placeholder="select category" ref={categoryRef}>
+            <Form.Select
+              placeholder="select category"
+              onChange={categoryChangeHandler}
+              className={!categoryIsValid ? "border border-danger" : ""}
+            >
               <option>Hobby</option>
               <option>Family</option>
               <option>Work</option>
