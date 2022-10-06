@@ -43,7 +43,13 @@ function ToDos() {
       return toDo.category === clickedCategory;
     }
   });
-  //console.log(filteredToDos);
+
+  //toDos are displayed in date order
+  filteredToDos.sort((a, b) => {
+    return a.date - b.date;
+  });
+
+  console.log(filteredToDos);
 
   const deleteToDo = (id) => {
     const filteredToDos = toDos.filter((toDo) => toDo.title !== id);
